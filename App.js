@@ -23,6 +23,10 @@ export default function App() {
     }
   };
 
+  const cancelarPelicula = () => {
+    setIsModalVisible(false);
+  };
+
   const onDelete = (peliculaID) => {
     console.log("ID de la pelicula:" + peliculaID);
     setLista((lista) => {
@@ -35,11 +39,11 @@ export default function App() {
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
-        <Text style={styles.header}>¡Bienvenid@ a tu watch-list!</Text>
+        <Text style={styles.header}>¡Bienvenid@ {"\n"} a tu watch-list!</Text>
         <TouchableHighlight
           style={styles.activador}
           onPress={() => setIsModalVisible(true)}
-          underlayColor={"#FFDC2E"}
+          underlayColor={"#00796b"}
         >
           <Text style={styles.activadorText}>Añadir una película</Text>
         </TouchableHighlight>
@@ -47,6 +51,7 @@ export default function App() {
 
       <InputArea
         style={{ padding: "1%" }}
+        cancelarPelicula={cancelarPelicula}
         agregarItem={agregarItem}
         resetter={""}
         isModalVisible={isModalVisible}
@@ -75,35 +80,40 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#C6E3FF",
+    backgroundColor: "#00796b",
     alignItems: "center",
     justifyContent: "center",
     padding: "15%",
   },
   headerContainer: {
-    marginTop: "25%",
+    marginTop: "10%",
     marginBottom: "5%",
     justifyContent: "center",
     alignItems: "center",
     width: "100%",
+    backgroundColor: "white",
+    paddingTop: 30,
+    borderRadius: 15,
+    padding: 3,
   },
   header: {
     color: "#111D5B",
-    fontSize: 22,
+    fontSize: 24,
     fontWeight: "700",
     justifyContent: "center",
     textAlign: "center",
     letterSpacing: 2,
   },
   helper: {
-    color: "#111D5B",
+    color: "#ffffff",
     fontSize: 14,
     fontWeight: "700",
     justifyContent: "center",
     textAlign: "center",
+    marginBottom: 20,
   },
   activador: {
-    backgroundColor: "#FFB800",
+    backgroundColor: "#004d40",
     borderRadius: 8,
     padding: "5%",
     margin: "10%",
@@ -117,7 +127,7 @@ const styles = StyleSheet.create({
   },
   activadorText: {
     color: "#ffffff",
-    fontSize: 24,
+    fontSize: 18,
     fontWeight: "500",
   },
 });
