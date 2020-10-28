@@ -5,26 +5,30 @@ import {
   TextInput,
   StyleSheet,
   TouchableHighlight,
+  Modal,
 } from "react-native";
 
 const InputArea = (props) => {
   const [peliInsertada, setPeliInsertada] = useState("");
 
   return (
-    <View style={styles.inputAreaContainer}>
-      <TextInput
-        style={styles.textInput}
-        placeholder="Introduce el título..."
-        onChangeText={(text) => setPeliInsertada(text)}
-      />
-      <TouchableHighlight
-        style={styles.addBtn}
-        onPress={props.agregarItem.bind(this, peliInsertada)}
-        underlayColor="#FFDC2E"
-      >
-        <Text style={styles.addBtnText}>+</Text>
-      </TouchableHighlight>
-    </View>
+    <Modal visible={props.isModalVisible} animationType="slide">
+      <View style={styles.inputAreaContainer}>
+        <TextInput
+          style={styles.textInput}
+          placeholder="Introduce el título..."
+          onChangeText={(text) => setPeliInsertada(text)}
+          onSubmitEditing={(text) => setPeliInsertada("")}
+        />
+        <TouchableHighlight
+          style={styles.addBtn}
+          onPress={props.agregarItem.bind(this, peliInsertada)}
+          underlayColor="#FFDC2E"
+        >
+          <Text style={styles.addBtnText}>+</Text>
+        </TouchableHighlight>
+      </View>
+    </Modal>
   );
 };
 
@@ -33,11 +37,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffffff",
     padding: "2%",
     paddingLeft: "5%",
-    fontSize: 16,
+    fontSize: 32,
     justifyContent: "center",
     borderRadius: 8,
-    width: "75%",
-    marginRight: "10%",
+    marginBottom: "10%",
+    width: "100%",
     shadowColor: "#000",
     shadowOffset: {
       width: 5,
@@ -48,9 +52,8 @@ const styles = StyleSheet.create({
   },
   addBtn: {
     backgroundColor: "#FFB800",
-    borderRadius: 8,
-    width: "15%",
-    padding: "1%",
+    borderRadius: 50,
+    padding: "10%",
     shadowColor: "#000",
     shadowOffset: {
       width: 5,
@@ -66,13 +69,10 @@ const styles = StyleSheet.create({
     fontSize: 24,
   },
   inputAreaContainer: {
-    width: "100%",
-    marginHorizontal: "5%",
-    textAlign: "center",
-    marginBottom: "5%",
-    padding: "1%",
-    flexDirection: "row",
-    justifyContent: "space-evenly",
+    justifyContent: "center",
+    flex: 1,
+    alignItems: "center",
+    padding: 50,
   },
 });
 

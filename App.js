@@ -1,8 +1,13 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, ScrollView } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  TouchableHighlight,
+} from "react-native";
 import InputArea from "./assets/components/InputArea";
 import Pelicula from "./assets/components/Pelicula";
-import Test from "./assets/components/Test";
 
 export default function App() {
   const [lista, setLista] = useState([]);
@@ -15,6 +20,7 @@ export default function App() {
       setLista([...lista, { id: itemCounter, valor: item }]);
       setitemCounter(itemCounter + 0.000001);
       console.log("Agregada la película: " + item);
+      setIsModalVisible(false);
     }
   };
 
@@ -25,13 +31,27 @@ export default function App() {
     });
   };
 
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
         <Text style={styles.header}>¡Bienvenid@ a tu watch-list!</Text>
+        <TouchableHighlight
+          style={styles.activador}
+          onPress={() => setIsModalVisible(true)}
+          underlayColor={"#FFDC2E"}
+        >
+          <Text style={styles.activadorText}>Añadir una película</Text>
+        </TouchableHighlight>
       </View>
 
-      <InputArea style={{ padding: "1%" }} agregarItem={agregarItem} />
+      <InputArea
+        style={{ padding: "1%" }}
+        agregarItem={agregarItem}
+        resetter={""}
+        isModalVisible={isModalVisible}
+      />
 
       {lista.length > 0 ? (
         <Text style={styles.helper}>
@@ -82,5 +102,23 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     justifyContent: "center",
     textAlign: "center",
+  },
+  activador: {
+    backgroundColor: "#FFB800",
+    borderRadius: 8,
+    padding: "5%",
+    margin: "10%",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 5,
+      height: 3,
+    },
+    shadowOpacity: 0.29,
+    shadowRadius: 4.65,
+  },
+  activadorText: {
+    color: "#ffffff",
+    fontSize: 24,
+    fontWeight: "500",
   },
 });
