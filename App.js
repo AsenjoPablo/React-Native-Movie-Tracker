@@ -63,6 +63,10 @@ export default function App() {
         </Text>
       ) : null}
 
+      {lista.length == 0 ? (
+        <Text style={styles.helperEmpty}>¡Vaya! Tu lista está vacía.</Text>
+      ) : null}
+
       <ScrollView style={{ width: "100%", padding: "1%" }}>
         {lista.map((item, index) => (
           <Pelicula
@@ -97,7 +101,7 @@ const styles = StyleSheet.create({
     padding: 3,
   },
   header: {
-    color: "#111D5B",
+    color: "#004d40",
     fontSize: 24,
     fontWeight: "700",
     justifyContent: "center",
@@ -107,6 +111,15 @@ const styles = StyleSheet.create({
   helper: {
     color: "#ffffff",
     fontSize: 14,
+    fontWeight: "700",
+    justifyContent: "center",
+    textAlign: "center",
+    marginBottom: 20,
+  },
+  helperEmpty: {
+    position: "absolute",
+    color: "#ffffff",
+    fontSize: 22,
     fontWeight: "700",
     justifyContent: "center",
     textAlign: "center",
