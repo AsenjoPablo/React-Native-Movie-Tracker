@@ -16,7 +16,6 @@ export default function App() {
 
   const agregarItem = (item) => {
     if (!item == "") {
-      // setLista([...lista, item]);
       setLista([...lista, { id: itemCounter, valor: item }]);
       setitemCounter(itemCounter + 0.000001);
       console.log("Agregada la película: " + item);

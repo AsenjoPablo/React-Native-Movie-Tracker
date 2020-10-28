@@ -11,6 +11,11 @@ import {
 const InputArea = (props) => {
   const [peliInsertada, setPeliInsertada] = useState("");
 
+  const test = () => {
+    props.agregarItem(peliInsertada);
+    setPeliInsertada("");
+  };
+
   return (
     <Modal visible={props.isModalVisible} animationType="slide">
       <View style={styles.inputAreaContainer}>
@@ -18,11 +23,11 @@ const InputArea = (props) => {
           style={styles.textInput}
           placeholder="Introduce el título..."
           onChangeText={(text) => setPeliInsertada(text)}
-          onSubmitEditing={(text) => setPeliInsertada("")}
         />
+
         <TouchableHighlight
           style={styles.addBtn}
-          onPress={props.agregarItem.bind(this, peliInsertada)}
+          onPress={test}
           underlayColor="#FFDC2E"
         >
           <Text style={styles.addBtnText}>+</Text>
