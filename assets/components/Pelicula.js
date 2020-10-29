@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     shadowRadius: 4.65,
   },
   listItemText: {
-    color: "#111D5B",
+    color: "#004d40",
     fontSize: 24,
     fontWeight: "700",
     justifyContent: "center",
